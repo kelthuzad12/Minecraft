@@ -1,0 +1,32 @@
+[Unit]
+Description=Minecraft
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/minecraft/minecraft/production/
+Restart=always
+StartLimitInterval=10  
+StartLimitBurst=3
+
+ExecStart=/usr/bin/screen -DmS Minecraft /usr/bin/java -Xms1G -Xmx4G -jar paper-1.19.2-142.jar nogui
+
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say SERVER SHUTTING DOWN IN 30 SECONDS...."\015'
+ExecStop=/bin/sleep 20
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say SERVER SHUTTING DOWN IN 10 SECONDS...."\015'
+ExecStop=/bin/sleep 5
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say Shutdown in 5..."\015'
+ExecStop=/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say Shutdown in 4..."\015'
+ExecStop=/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say Shutdown in 3..."\015'
+ExecStop=/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say Shutdown in 2..."\015'
+ExecStop=/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "say Shutdown in 1..."\015'
+ExecStop=/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "save-all"\\010'
+ExecStop=/usr/bin/screen -p 0 -S Minecraft -X eval 'stuff "stop"\\010'
+
+
+[Install]
+WantedBy=multi-user.target
