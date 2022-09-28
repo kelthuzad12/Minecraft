@@ -5,4 +5,4 @@ Services:
 
 Script:
 * checkmc.sh does the following:
-  - checks if the remote server is online, running, stopping, or stopped. If the remote server is stopped or offline it will start the local server's instance of minecraft after verifying that it is not already running or stopped
+  - checks if the remote server is online, running, stopping, or stopped. If the remote server is stopped or offline it will start the local server's instance of minecraft after verifying that it is not already running or stopping
